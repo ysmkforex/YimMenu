@@ -1,10 +1,12 @@
 name: Build YimMenu
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -15,7 +17,7 @@ jobs:
         run: msbuild YimMenu.sln /p:Configuration=Release /p:Platform=x64
 
       - name: Upload DLL
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: YimMenu.dll
           path: bin/x64/Release/YimMenu.dll
